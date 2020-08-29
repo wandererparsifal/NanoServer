@@ -1,5 +1,8 @@
 package com.example.nanoserver;
 
+import com.example.nanoserver.router.HomeHandler;
+import com.example.nanoserver.router.ResourceHandler;
+
 import fi.iki.elonen.router.RouterNanoHTTPD;
 
 public class NanoServer extends RouterNanoHTTPD {
@@ -12,6 +15,7 @@ public class NanoServer extends RouterNanoHTTPD {
     @Override
     public void addMappings() {
         super.addMappings();
-        addRoute("/", IndexHandler.class);
+        addRoute("/", HomeHandler.class);
+        addRoute("/public/:type/:fileName", ResourceHandler.class);
     }
 }
