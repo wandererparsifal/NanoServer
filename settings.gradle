@@ -1,2 +1,3 @@
+include ':javaserver'
 include ':app'
 rootProject.name = "NanoServer"

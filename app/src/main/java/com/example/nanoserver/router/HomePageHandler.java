@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import fi.iki.elonen.NanoHTTPD;
 import fi.iki.elonen.router.RouterNanoHTTPD;
 
-public class HomeHandler extends RouterNanoHTTPD.DefaultHandler {
+public class HomePageHandler extends RouterNanoHTTPD.DefaultHandler {
 
     public String getText() {
         InputStream is = ServerApplication.getInstance().getResStream("htmls/index.html");
