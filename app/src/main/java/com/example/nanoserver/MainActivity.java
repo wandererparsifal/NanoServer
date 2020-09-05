@@ -2,7 +2,10 @@ package com.example.nanoserver;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         final WebView webView = findViewById(R.id.wv);
+
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return false;
+            }
+        });
+
         new Handler(getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
