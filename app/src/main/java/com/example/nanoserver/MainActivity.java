@@ -1,15 +1,16 @@
 package com.example.nanoserver;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NanoServer server = new NanoServer();
-        try {
-            server.start();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Intent intent = new Intent(getApplicationContext(), ServerService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
         }
 
         final WebView webView = findViewById(R.id.wv);
@@ -42,5 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 webView.loadUrl("http://localhost:8080");
             }
         }, 200);
+
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

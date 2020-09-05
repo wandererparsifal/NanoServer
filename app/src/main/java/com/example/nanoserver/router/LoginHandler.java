@@ -37,10 +37,9 @@ public class LoginHandler extends RouterNanoHTTPD.DefaultHandler {
             if (!map.isEmpty()) {
                 LoginBean loginBean = new LoginBean();
                 for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-                    if ("name".equals(entry.getKey())) {
-                        loginBean.name = entry.getValue().get(0);
-                    } else if ("password".equals(entry.getKey())) {
-                        loginBean.password = entry.getValue().get(0);
+                    if ("data".equals(entry.getKey())) {
+                        String json = entry.getValue().get(0);
+                        loginBean = new Gson().fromJson(json, LoginBean.class);
                     }
                 }
 
