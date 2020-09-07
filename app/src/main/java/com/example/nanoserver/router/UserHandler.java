@@ -24,6 +24,10 @@ public class UserHandler extends RouterNanoHTTPD.DefaultHandler {
         String type = urlParams.get("token");
         if ("90u35b7u98b9478213b57u093ubn4387g493mvh309h4".equals(type)) {
             response.name = "rainbow";
+            response.telephone = "13000000000";
+            response.address = "Dalian";
+            response.occupation = "Employee";
+            response.avatar = "http://localhost:8080/public/images/1914475842.jpg";
             return NanoHTTPD.newFixedLengthResponse(getStatus(), "application/json", new Gson().toJson(response));
         }
         return NanoHTTPD.newFixedLengthResponse(getStatus(), "application/json", "{}");
@@ -37,5 +41,13 @@ public class UserHandler extends RouterNanoHTTPD.DefaultHandler {
     static class UserResponse {
 
         String name;
+
+        String telephone;
+
+        String address;
+
+        String occupation;
+
+        String avatar;
     }
 }
